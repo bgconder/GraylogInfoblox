@@ -1,0 +1,7 @@
+Welcome to my Graylog Infoblox repository!
+
+If you are struggling with using syslog input for your Infoblox servers, I recommend using a Raw/Plaintext UDP input instead. I found that when I used syslog input, my syslog timestamps were 6 hours behind. I attempted to use pipelines to resolve the issue, but unfortunately, I was unsuccessful.
+
+I hope my experience can help anyone else who may be encountering the same issue. It's important to note that my Infoblox servers are running on version 8.5.2.
+
+In this repository, you'll find a collection of extractors that you can easily import into your Graylog instance. Additionally, I have included some dashboards that I believe will be useful for managing your Infoblox logs.
