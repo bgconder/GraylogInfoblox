@@ -1,0 +1,1200 @@
+{
+  "v": 1,
+  "id": "b1895e6a-1d12-4cd6-a470-93d0f8a5844f",
+  "rev": 1,
+  "name": "Infoblox",
+  "summary": "Infoblox-Version-1",
+  "description": "Welcome to my Graylog Infoblox repository!\n\nIf you are struggling with using syslog input for your Infoblox servers, I recommend using a Raw/Plaintext UDP input instead. I found that when I used syslog input, my syslog timestamps were 6 hours behind. I attempted to use pipelines to resolve the issue, but unfortunately, I was unsuccessful.\n\nI hope my experience can help anyone else who may be encountering the same issue. It's important to note that my Infoblox servers are running on version 8.5.2.\n\nIn this repository, you'll find a collection of extractors that you can easily import into your Graylog instance. Additionally, I have included some dashboards that I believe will be useful for managing your Infoblox logs.",
+  "vendor": "Ben Conder ben.conder@canyonsdistrict.org",
+  "url": "https://github.com/bgconder/GraylogInfoblox/",
+  "parameters": [],
+  "entities": [
+    {
+      "v": "1",
+      "type": {
+        "name": "dashboard",
+        "version": "2"
+      },
+      "id": "ba6b2528-b96a-4972-b923-541cc13b2195",
+      "data": {
+        "summary": {
+          "@type": "string",
+          "@value": "IPAM Infoblox Logs"
+        },
+        "search": {
+          "queries": [
+            {
+              "id": "20a36f27-792e-49f5-9695-6247986705a9",
+              "timerange": {
+                "type": "relative",
+                "from": 300
+              },
+              "query": {
+                "type": "elasticsearch",
+                "query_string": ""
+              },
+              "search_types": [
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": "process_name:dhcpd"
+                  },
+                  "name": "chart",
+                  "timerange": {
+                    "type": "relative",
+                    "from": 300
+                  },
+                  "streams": [
+                    "0eedffb2-e7e8-49d6-bc17-2678841df828"
+                  ],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "Message Count",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [],
+                  "type": "pivot",
+                  "id": "d58495d8-0509-41d7-be8b-fd24db8e3335",
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": "process_name:dhcpd"
+                  },
+                  "name": null,
+                  "timerange": {
+                    "type": "relative",
+                    "from": 300
+                  },
+                  "offset": 0,
+                  "streams": [
+                    "0eedffb2-e7e8-49d6-bc17-2678841df828"
+                  ],
+                  "filter": null,
+                  "decorators": [],
+                  "type": "messages",
+                  "id": "afdcd7ae-434d-4cf2-8fe2-ad62c4a6a4b1",
+                  "limit": 150
+                }
+              ]
+            },
+            {
+              "id": "fa4cf481-57cf-4c40-a107-a00e57703de3",
+              "timerange": {
+                "type": "relative",
+                "from": 300
+              },
+              "query": {
+                "type": "elasticsearch",
+                "query_string": ""
+              },
+              "search_types": [
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": "process_name:named"
+                  },
+                  "name": "chart",
+                  "timerange": {
+                    "type": "relative",
+                    "from": 604800
+                  },
+                  "streams": [
+                    "0eedffb2-e7e8-49d6-bc17-2678841df828"
+                  ],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "Message Count",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "values",
+                      "field": "record_type",
+                      "limit": 15
+                    }
+                  ],
+                  "type": "pivot",
+                  "id": "c04afd46-e836-4746-94c0-cdadf9eb4f40",
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": ""
+                  },
+                  "name": "chart",
+                  "timerange": {
+                    "type": "relative",
+                    "from": 604800
+                  },
+                  "streams": [],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "Message Count",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [
+                    {
+                      "type": "values",
+                      "field": "dns_query",
+                      "limit": 15
+                    }
+                  ],
+                  "type": "pivot",
+                  "id": "a38e4bb7-a80c-4b37-b827-bfb7998b11bd",
+                  "column_groups": [],
+                  "sort": []
+                },
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": "process_name:named"
+                  },
+                  "name": null,
+                  "timerange": {
+                    "type": "relative",
+                    "from": 300
+                  },
+                  "offset": 0,
+                  "streams": [
+                    "0eedffb2-e7e8-49d6-bc17-2678841df828"
+                  ],
+                  "filter": null,
+                  "decorators": [],
+                  "type": "messages",
+                  "id": "31e7a853-c55a-49d6-979e-4ccad755c6a4",
+                  "limit": 150
+                }
+              ]
+            },
+            {
+              "id": "76588864-e82d-4960-81d5-0fed46a98561",
+              "timerange": {
+                "type": "relative",
+                "from": 300
+              },
+              "query": {
+                "type": "elasticsearch",
+                "query_string": ""
+              },
+              "search_types": [
+                {
+                  "query": {
+                    "type": "elasticsearch",
+                    "query_string": "NOT process_name:named AND NOT process_name:dhcpd AND NOT message:\"DROP:IN=eth0\" AND NOT message:\"ClearPass\""
+                  },
+                  "name": null,
+                  "timerange": {
+                    "type": "relative",
+                    "from": 300
+                  },
+                  "offset": 0,
+                  "streams": [
+                    "0eedffb2-e7e8-49d6-bc17-2678841df828"
+                  ],
+                  "filter": null,
+                  "decorators": [],
+                  "type": "messages",
+                  "id": "4cdef417-036e-4266-acca-b453dc2336ae",
+                  "limit": 150
+                },
+                {
+                  "query": null,
+                  "name": "chart",
+                  "timerange": null,
+                  "streams": [],
+                  "series": [
+                    {
+                      "type": "count",
+                      "id": "Message Count",
+                      "field": null
+                    }
+                  ],
+                  "filter": null,
+                  "rollup": true,
+                  "row_groups": [],
+                  "type": "pivot",
+                  "id": "b492bada-3627-4d04-93f4-c5c0ff336cfa",
+                  "column_groups": [],
+                  "sort": []
+                }
+              ]
+            }
+          ],
+          "parameters": [],
+          "requires": {},
+          "owner": "ben.conder",
+          "created_at": "2023-05-03T15:57:23.012Z"
+        },
+        "created_at": "2023-05-02T19:34:35.772Z",
+        "requires": {},
+        "state": {
+          "76588864-e82d-4960-81d5-0fed46a98561": {
+            "selected_fields": null,
+            "static_message_list_id": null,
+            "titles": {
+              "tab": {
+                "title": "Infoblox System"
+              },
+              "widget": {
+                "f655a535-64bb-4f67-ad45-e0830f87e13a": "Systems Log Filtered Out Noise"
+              }
+            },
+            "widgets": [
+              {
+                "id": "cd93934d-9a52-47f3-8f0e-7a631f1cca61",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": null,
+                "query": null,
+                "streams": [],
+                "config": {
+                  "visualization": "numeric",
+                  "event_annotation": false,
+                  "row_pivots": [],
+                  "series": [
+                    {
+                      "config": {
+                        "name": "Message Count"
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              },
+              {
+                "id": "f655a535-64bb-4f67-ad45-e0830f87e13a",
+                "type": "messages",
+                "filter": null,
+                "timerange": {
+                  "type": "relative",
+                  "from": 300
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": "NOT process_name:named AND NOT process_name:dhcpd AND NOT message:\"DROP:IN=eth0\" AND NOT message:\"ClearPass\""
+                },
+                "streams": [
+                  "0eedffb2-e7e8-49d6-bc17-2678841df828"
+                ],
+                "config": {
+                  "fields": [
+                    "timestamp",
+                    "source"
+                  ],
+                  "show_message_row": true,
+                  "show_summary": true,
+                  "decorators": [],
+                  "sort": [
+                    {
+                      "type": "pivot",
+                      "field": "timestamp",
+                      "direction": "Descending"
+                    }
+                  ]
+                }
+              }
+            ],
+            "widget_mapping": {
+              "cd93934d-9a52-47f3-8f0e-7a631f1cca61": [
+                "b492bada-3627-4d04-93f4-c5c0ff336cfa"
+              ],
+              "f655a535-64bb-4f67-ad45-e0830f87e13a": [
+                "4cdef417-036e-4266-acca-b453dc2336ae"
+              ]
+            },
+            "positions": {
+              "cd93934d-9a52-47f3-8f0e-7a631f1cca61": {
+                "col": 1,
+                "row": 1,
+                "height": 4,
+                "width": 6
+              },
+              "f655a535-64bb-4f67-ad45-e0830f87e13a": {
+                "col": 1,
+                "row": 5,
+                "height": 5,
+                "width": "Infinity"
+              }
+            },
+            "formatting": {
+              "highlighting": []
+            },
+            "display_mode_settings": {
+              "positions": {}
+            }
+          },
+          "20a36f27-792e-49f5-9695-6247986705a9": {
+            "selected_fields": null,
+            "static_message_list_id": null,
+            "titles": {
+              "tab": {
+                "title": "DHCP"
+              },
+              "widget": {
+                "03029b9d-998c-4542-a53a-7321a956fd9a": "DHCP Logs",
+                "979d5da1-f14b-4db1-ba7a-d02e72bacef9": "DHCP Log Count"
+              }
+            },
+            "widgets": [
+              {
+                "id": "03029b9d-998c-4542-a53a-7321a956fd9a",
+                "type": "messages",
+                "filter": null,
+                "timerange": {
+                  "type": "relative",
+                  "from": 300
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": "process_name:dhcpd"
+                },
+                "streams": [
+                  "0eedffb2-e7e8-49d6-bc17-2678841df828"
+                ],
+                "config": {
+                  "fields": [
+                    "timestamp",
+                    "source",
+                    "syslog_hostname"
+                  ],
+                  "show_message_row": true,
+                  "show_summary": true,
+                  "decorators": [],
+                  "sort": [
+                    {
+                      "type": "pivot",
+                      "field": "timestamp",
+                      "direction": "Descending"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "979d5da1-f14b-4db1-ba7a-d02e72bacef9",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": {
+                  "type": "relative",
+                  "from": 300
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": "process_name:dhcpd"
+                },
+                "streams": [
+                  "0eedffb2-e7e8-49d6-bc17-2678841df828"
+                ],
+                "config": {
+                  "visualization": "numeric",
+                  "event_annotation": false,
+                  "row_pivots": [],
+                  "series": [
+                    {
+                      "config": {
+                        "name": "Message Count"
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              }
+            ],
+            "widget_mapping": {
+              "03029b9d-998c-4542-a53a-7321a956fd9a": [
+                "afdcd7ae-434d-4cf2-8fe2-ad62c4a6a4b1"
+              ],
+              "979d5da1-f14b-4db1-ba7a-d02e72bacef9": [
+                "d58495d8-0509-41d7-be8b-fd24db8e3335"
+              ]
+            },
+            "positions": {
+              "03029b9d-998c-4542-a53a-7321a956fd9a": {
+                "col": 1,
+                "row": 7,
+                "height": 3,
+                "width": "Infinity"
+              },
+              "979d5da1-f14b-4db1-ba7a-d02e72bacef9": {
+                "col": 1,
+                "row": 3,
+                "height": 4,
+                "width": 6
+              }
+            },
+            "formatting": {
+              "highlighting": []
+            },
+            "display_mode_settings": {
+              "positions": {}
+            }
+          },
+          "fa4cf481-57cf-4c40-a107-a00e57703de3": {
+            "selected_fields": null,
+            "static_message_list_id": null,
+            "titles": {
+              "tab": {
+                "title": "DNS"
+              },
+              "widget": {
+                "bfd20a45-62ab-493e-ac23-526a47f1e204": "DNS Logs",
+                "c97d2d47-6e9d-47c4-84c5-3a9eb473e0da": "DNS Type",
+                "83a612df-7905-446f-814d-207f374c39ac": "DNS Querys"
+              }
+            },
+            "widgets": [
+              {
+                "id": "bfd20a45-62ab-493e-ac23-526a47f1e204",
+                "type": "messages",
+                "filter": null,
+                "timerange": {
+                  "type": "relative",
+                  "from": 300
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": "process_name:named"
+                },
+                "streams": [
+                  "0eedffb2-e7e8-49d6-bc17-2678841df828"
+                ],
+                "config": {
+                  "fields": [
+                    "timestamp",
+                    "source"
+                  ],
+                  "show_message_row": true,
+                  "show_summary": true,
+                  "decorators": [],
+                  "sort": [
+                    {
+                      "type": "pivot",
+                      "field": "timestamp",
+                      "direction": "Descending"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "c97d2d47-6e9d-47c4-84c5-3a9eb473e0da",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": {
+                  "type": "relative",
+                  "from": 604800
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": "process_name:named"
+                },
+                "streams": [
+                  "0eedffb2-e7e8-49d6-bc17-2678841df828"
+                ],
+                "config": {
+                  "visualization": "pie",
+                  "event_annotation": false,
+                  "row_pivots": [
+                    {
+                      "field": "record_type",
+                      "type": "values",
+                      "config": {
+                        "limit": 15
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": "Message Count"
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              },
+              {
+                "id": "83a612df-7905-446f-814d-207f374c39ac",
+                "type": "aggregation",
+                "filter": null,
+                "timerange": {
+                  "type": "relative",
+                  "from": 604800
+                },
+                "query": {
+                  "type": "elasticsearch",
+                  "query_string": ""
+                },
+                "streams": [],
+                "config": {
+                  "visualization": "table",
+                  "event_annotation": false,
+                  "row_pivots": [
+                    {
+                      "field": "dns_query",
+                      "type": "values",
+                      "config": {
+                        "limit": 15
+                      }
+                    }
+                  ],
+                  "series": [
+                    {
+                      "config": {
+                        "name": "Message Count"
+                      },
+                      "function": "count()"
+                    }
+                  ],
+                  "rollup": true,
+                  "column_pivots": [],
+                  "visualization_config": null,
+                  "formatting_settings": null,
+                  "sort": []
+                }
+              }
+            ],
+            "widget_mapping": {
+              "bfd20a45-62ab-493e-ac23-526a47f1e204": [
+                "31e7a853-c55a-49d6-979e-4ccad755c6a4"
+              ],
+              "c97d2d47-6e9d-47c4-84c5-3a9eb473e0da": [
+                "c04afd46-e836-4746-94c0-cdadf9eb4f40"
+              ],
+              "83a612df-7905-446f-814d-207f374c39ac": [
+                "a38e4bb7-a80c-4b37-b827-bfb7998b11bd"
+              ]
+            },
+            "positions": {
+              "bfd20a45-62ab-493e-ac23-526a47f1e204": {
+                "col": 1,
+                "row": 13,
+                "height": 5,
+                "width": "Infinity"
+              },
+              "c97d2d47-6e9d-47c4-84c5-3a9eb473e0da": {
+                "col": 1,
+                "row": 9,
+                "height": 4,
+                "width": 6
+              },
+              "83a612df-7905-446f-814d-207f374c39ac": {
+                "col": 7,
+                "row": 9,
+                "height": 4,
+                "width": 6
+              }
+            },
+            "formatting": {
+              "highlighting": []
+            },
+            "display_mode_settings": {
+              "positions": {}
+            }
+          }
+        },
+        "properties": [],
+        "owner": "ben.conder",
+        "title": {
+          "@type": "string",
+          "@value": "Infoblox"
+        },
+        "type": "DASHBOARD",
+        "description": {
+          "@type": "string",
+          "@value": "Infoblox Logs for DHCP DNS and SYSTEM."
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.3.11+b48cf45"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "input",
+        "version": "1"
+      },
+      "id": "b2ffcd50-a721-4d18-b682-808ba63e8011",
+      "data": {
+        "title": {
+          "@type": "string",
+          "@value": "Infoblox"
+        },
+        "configuration": {
+          "recv_buffer_size": {
+            "@type": "integer",
+            "@value": 262144
+          },
+          "bind_address": {
+            "@type": "string",
+            "@value": "0.0.0.0"
+          },
+          "port": {
+            "@type": "integer",
+            "@value": 1515
+          },
+          "number_worker_threads": {
+            "@type": "integer",
+            "@value": 16
+          }
+        },
+        "static_fields": {},
+        "type": {
+          "@type": "string",
+          "@value": "org.graylog2.inputs.raw.udp.RawUDPInput"
+        },
+        "global": {
+          "@type": "boolean",
+          "@value": false
+        },
+        "extractors": [
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "syslog_priority"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "^<(\\d+)>"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Syslog Priority"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "syslog_hostname"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 2
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "\\d{2}:\\d{2}:\\d{2}\\s(\\S+)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Syslog Hostname"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "process_name"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 3
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "\\d{2}:\\d{2}:\\d{2}\\s\\S+\\s(\\S+)\\[(\\d+)\\]:"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Process Name"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "pid"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 4
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "\\d{2}:\\d{2}:\\d{2}\\s\\S+\\s\\S+\\[(\\d+)\\]:"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "PID"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "message_content"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": ""
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 5
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "\\d{2}:\\d{2}:\\d{2}\\s\\S+\\s\\S+\\[\\d+\\]:\\s(.+)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Message Content"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "NONE"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "record_type"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": " IN "
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "\\bIN\\s+(\\S+)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Record Type"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "dns_query"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": "query: "
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "\\bquery: (\\S+)"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "DNS Query"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          },
+          {
+            "target_field": {
+              "@type": "string",
+              "@value": "client_ip"
+            },
+            "condition_value": {
+              "@type": "string",
+              "@value": " client "
+            },
+            "order": {
+              "@type": "integer",
+              "@value": 0
+            },
+            "converters": [],
+            "configuration": {
+              "regex_value": {
+                "@type": "string",
+                "@value": "client @\\S+\\s(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})"
+              }
+            },
+            "source_field": {
+              "@type": "string",
+              "@value": "message"
+            },
+            "title": {
+              "@type": "string",
+              "@value": "Client IP"
+            },
+            "type": {
+              "@type": "string",
+              "@value": "REGEX"
+            },
+            "cursor_strategy": {
+              "@type": "string",
+              "@value": "COPY"
+            },
+            "condition_type": {
+              "@type": "string",
+              "@value": "STRING"
+            }
+          }
+        ]
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.3.11+b48cf45"
+        }
+      ]
+    },
+    {
+      "v": "1",
+      "type": {
+        "name": "stream",
+        "version": "1"
+      },
+      "id": "0eedffb2-e7e8-49d6-bc17-2678841df828",
+      "data": {
+        "alarm_callbacks": [],
+        "outputs": [],
+        "remove_matches": {
+          "@type": "boolean",
+          "@value": true
+        },
+        "title": {
+          "@type": "string",
+          "@value": "Infoblox Logs"
+        },
+        "stream_rules": [
+          {
+            "type": {
+              "@type": "string",
+              "@value": "EXACT"
+            },
+            "field": {
+              "@type": "string",
+              "@value": "source"
+            },
+            "value": {
+              "@type": "string",
+              "@value": "10.0.0.0"
+            },
+            "inverted": {
+              "@type": "boolean",
+              "@value": false
+            },
+            "description": {
+              "@type": "string",
+              "@value": ""
+            }
+          },
+          {
+            "type": {
+              "@type": "string",
+              "@value": "EXACT"
+            },
+            "field": {
+              "@type": "string",
+              "@value": "source"
+            },
+            "value": {
+              "@type": "string",
+              "@value": "10.0.0.0"
+            },
+            "inverted": {
+              "@type": "boolean",
+              "@value": false
+            },
+            "description": {
+              "@type": "string",
+              "@value": ""
+            }
+          },
+          {
+            "type": {
+              "@type": "string",
+              "@value": "EXACT"
+            },
+            "field": {
+              "@type": "string",
+              "@value": "source"
+            },
+            "value": {
+              "@type": "string",
+              "@value": "10.0.0.0"
+            },
+            "inverted": {
+              "@type": "boolean",
+              "@value": false
+            },
+            "description": {
+              "@type": "string",
+              "@value": ""
+            }
+          },
+          {
+            "type": {
+              "@type": "string",
+              "@value": "EXACT"
+            },
+            "field": {
+              "@type": "string",
+              "@value": "source"
+            },
+            "value": {
+              "@type": "string",
+              "@value": "10.0.0.0"
+            },
+            "inverted": {
+              "@type": "boolean",
+              "@value": false
+            },
+            "description": {
+              "@type": "string",
+              "@value": ""
+            }
+          },
+          {
+            "type": {
+              "@type": "string",
+              "@value": "EXACT"
+            },
+            "field": {
+              "@type": "string",
+              "@value": "source"
+            },
+            "value": {
+              "@type": "string",
+              "@value": "10.0.0.0"
+            },
+            "inverted": {
+              "@type": "boolean",
+              "@value": false
+            },
+            "description": {
+              "@type": "string",
+              "@value": ""
+            }
+          },
+          {
+            "type": {
+              "@type": "string",
+              "@value": "EXACT"
+            },
+            "field": {
+              "@type": "string",
+              "@value": "source"
+            },
+            "value": {
+              "@type": "string",
+              "@value": "10.0.0.0"
+            },
+            "inverted": {
+              "@type": "boolean",
+              "@value": false
+            },
+            "description": {
+              "@type": "string",
+              "@value": ""
+            }
+          }
+        ],
+        "alert_conditions": [],
+        "matching_type": {
+          "@type": "string",
+          "@value": "OR"
+        },
+        "disabled": {
+          "@type": "boolean",
+          "@value": false
+        },
+        "description": {
+          "@type": "string",
+          "@value": ""
+        },
+        "default_stream": {
+          "@type": "boolean",
+          "@value": false
+        }
+      },
+      "constraints": [
+        {
+          "type": "server-version",
+          "version": ">=4.3.11+b48cf45"
+        }
+      ]
+    }
+  ]
+}
