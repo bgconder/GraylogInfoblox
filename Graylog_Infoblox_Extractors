@@ -1,0 +1,117 @@
+{
+  "extractors": [
+    {
+      "title": "Syslog Priority",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 0,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "syslog_priority",
+      "extractor_config": {
+        "regex_value": "^<(\\d+)>"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Syslog Hostname",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 2,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "syslog_hostname",
+      "extractor_config": {
+        "regex_value": "\\d{2}:\\d{2}:\\d{2}\\s(\\S+)"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Process Name",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 3,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "process_name",
+      "extractor_config": {
+        "regex_value": "\\d{2}:\\d{2}:\\d{2}\\s\\S+\\s(\\S+)\\[(\\d+)\\]:"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "PID",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 4,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "pid",
+      "extractor_config": {
+        "regex_value": "\\d{2}:\\d{2}:\\d{2}\\s\\S+\\s\\S+\\[(\\d+)\\]:"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Message Content",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 5,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "message_content",
+      "extractor_config": {
+        "regex_value": "\\d{2}:\\d{2}:\\d{2}\\s\\S+\\s\\S+\\[\\d+\\]:\\s(.+)"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "Record Type",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 0,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "record_type",
+      "extractor_config": {
+        "regex_value": "\\bIN\\s+(\\S+)"
+      },
+      "condition_type": "string",
+      "condition_value": " IN "
+    },
+    {
+      "title": "DNS Query",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 0,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "dns_query",
+      "extractor_config": {
+        "regex_value": "\\bquery: (\\S+)"
+      },
+      "condition_type": "string",
+      "condition_value": "query: "
+    },
+    {
+      "title": "Client IP",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 0,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "client_ip",
+      "extractor_config": {
+        "regex_value": "client @\\S+\\s(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})"
+      },
+      "condition_type": "string",
+      "condition_value": " client "
+    }
+  ],
+  "version": "4.3.11"
+}
